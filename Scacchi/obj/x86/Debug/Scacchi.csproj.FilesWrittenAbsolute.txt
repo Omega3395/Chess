@@ -1,0 +1,15 @@
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/bin/Debug/Scacchi.exe.mdb
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/bin/Debug/Scacchi.exe
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/obj/x86/Debug/Scacchi.exe
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/obj/x86/Debug/Scacchi.exe.mdb
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/bin/Debug/Emgu.CV.dll
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/bin/Debug/Emgu.Util.dll
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/bin/Debug/Emgu.Util.xml
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/bin/Debug/Emgu.CV.GPU.dll
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/bin/Debug/Emgu.CV.ML.dll
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/bin/Debug/Emgu.CV.OCR.dll
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/bin/Debug/Emgu.CV.Stitching.dll
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/bin/Debug/Emgu.CV.UI.dll
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/bin/Debug/Emgu.CV.VideoStab.dll
+/Users/AlbertoGiacalone/Projects/Scacchi/Scacchi/bin/Debug/ZedGraph.dll

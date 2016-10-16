@@ -1,0 +1,13 @@
+﻿<Properties StartupConfiguration="{894CF8B6-D590-471D-B0FC-274195C0D2E0}|Default">
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="Scacchi/Program.cs" Line="115" Column="61" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Scacchi PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
