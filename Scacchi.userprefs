@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{894CF8B6-D590-471D-B0FC-274195C0D2E0}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Scacchi/Program.cs">
     <Files>
-      <File FileName="Scacchi/Program.cs" Line="14" Column="47" />
+      <File FileName="Scacchi/Program.cs" Line="50" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
