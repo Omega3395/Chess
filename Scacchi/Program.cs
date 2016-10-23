@@ -27,44 +27,25 @@ namespace Scacchi {
 
 	class MainClass {
 
-
-		public static string move = "";
-		public static bool isAlreadyRunning = false;
-
 		public static void Main (string [] args) {
 
 			// Prendi e ridimensiona le immagini
 			Bitmap bmp1 = Utils.ResizeImages (new Bitmap (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img1.jpg")), Values.RESIZE_WIDTH, Values.RESIZE_HEIGHT);
 			Bitmap bmp2 = Utils.ResizeImages (new Bitmap (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img2.jpg")), Values.RESIZE_WIDTH, Values.RESIZE_HEIGHT);
 
-			Bitmap bmp3 = ImageManipulator.getDifferencBitmap (bmp2, bmp1, Color.Red);
+			// Crea la immagine "differenza" e ricavane la mossa
+			Bitmap bmp3 = ImageManipulator.getDifferenceBitmap (bmp2, bmp1);
+			string HumanMove = ImageManipulator.GetHumanMove (bmp3, bmp1);
 
+			//bmp3.Save (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img3.png"), ImageFormat.Png);
 
-			bmp1.Save (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img1-mod.png"), ImageFormat.Png);
-			bmp2.Save (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img2-mod.png"), ImageFormat.Png);
-
-			bmp3.Save (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img3.png"), ImageFormat.Png);
-
-
+			// Chiudi le immagini
 			bmp1.Dispose ();
 			bmp2.Dispose ();
 			bmp3.Dispose ();
 
 
-			string HumanMove = "e2e4";
-			Utils.AddToLog (HumanMove);
-
-			string ComputerMove = Utils.ToEssential (CCEManipulator.GetBestMove (Values.LOG));
-			Utils.AddToLog (ComputerMove);
-
-			HumanMove = "d2d4";
-			Utils.AddToLog (HumanMove);
-
-			ComputerMove = Utils.ToEssential (CCEManipulator.GetBestMove (Values.LOG));
-			Utils.AddToLog (ComputerMove);
-
-			Console.WriteLine (Values.LOG);
-
+			Console.WriteLine (HumanMove);
 
 
 			Console.WriteLine ("Processo terminato");

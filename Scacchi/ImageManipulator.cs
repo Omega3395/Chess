@@ -9,12 +9,7 @@ namespace Scacchi {
 		public ImageManipulator () {
 		}
 
-		/// <summary>
-		/// Checks if a certain color is red.
-		/// </summary>
-		/// <returns><c>true</c>, if pixel is red, <c>false</c> otherwise.</returns>
-		/// <param name="pixel">Color.</param>
-		public static bool IsRed (Color pixel) {
+		internal static bool IsRed (Color pixel) {
 
 			float Hue = pixel.GetHue ();
 			float Saturation = pixel.GetSaturation ();
@@ -58,8 +53,13 @@ namespace Scacchi {
 			return Convert.ToString (Columns [Column - 1]) + Convert.ToString (FRow);
 		}
 
+		/// <summary>
+		/// Gets the human move from 2 given images.
+		/// </summary>
+		/// <returns>The move relevated.</returns>
+		/// <param name="bmp">The "difference" image.</param>
+		/// <param name="bmp1">The first image.</param>
 		public static string GetHumanMove (Bitmap bmp, Bitmap bmp1) {
-
 
 			int [,] corners = GetCorners (bmp);
 
@@ -113,7 +113,13 @@ namespace Scacchi {
 			return bmp;
 		}
 
-		public static Bitmap getDifferencBitmap (Bitmap bmp1, Bitmap bmp2, Color diffColor) {
+		/// <summary>
+		/// Gets the differences between 2 images.
+		/// </summary>
+		/// <returns>The difference bitmap.</returns>
+		/// <param name="bmp1">First image.</param>
+		/// <param name="bmp2">Second image.</param>
+		public static Bitmap getDifferenceBitmap (Bitmap bmp1, Bitmap bmp2) {
 
 			Size s1 = bmp1.Size;
 			Size s2 = bmp2.Size;

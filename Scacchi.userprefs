@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{894CF8B6-D590-471D-B0FC-274195C0D2E0}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Scacchi/ImageManipulator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Scacchi/Program.cs">
     <Files>
-      <File FileName="Scacchi/Program.cs" Line="52" Column="25" />
-      <File FileName="Scacchi/ImageManipulator.cs" Line="15" Column="4" />
-      <File FileName="Scacchi/CCEManipulator.cs" Line="42" Column="18" />
-      <File FileName="Scacchi/Utils.cs" Line="29" Column="4" />
+      <File FileName="Scacchi/Program.cs" Line="61" Column="1" />
+      <File FileName="Scacchi/ImageManipulator.cs" Line="17" Column="18" />
+      <File FileName="Scacchi/CCEManipulator.cs" Line="11" Column="3" />
+      <File FileName="Scacchi/Utils.cs" Line="42" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
