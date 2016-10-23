@@ -23,11 +23,17 @@ namespace Scacchi {
 		public const int RESIZE_WIDTH = 150; // Dimensioni per il redimensionamento delle immagini (in pixel)
 		public const int RESIZE_HEIGHT = 150;
 
+		public static string CCE_PATH = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "stockfish-7-mac", "Mac", "stockfish-7-64");
+
 	}
 
 	class MainClass {
 
 		public static void Main (string [] args) {
+
+			// Avvia il Chess Engine
+			CCEManipulator.StartCCE (Values.CCE_PATH);
+
 
 			// Prendi e ridimensiona le immagini
 			Bitmap bmp1 = Utils.ResizeImages (new Bitmap (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img1.jpg")), Values.RESIZE_WIDTH, Values.RESIZE_HEIGHT);
@@ -35,6 +41,7 @@ namespace Scacchi {
 
 			// Crea la immagine "differenza" e ricavane la mossa
 			Bitmap bmp3 = ImageManipulator.getDifferenceBitmap (bmp2, bmp1);
+
 			string HumanMove = ImageManipulator.GetHumanMove (bmp3, bmp1);
 
 			//bmp3.Save (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img3.png"), ImageFormat.Png);
@@ -45,8 +52,11 @@ namespace Scacchi {
 			bmp3.Dispose ();
 
 
+
 			Console.WriteLine (HumanMove);
 
+			// Chiudi il Chess Engine
+			CCEManipulator.CloseCCE ();
 
 			Console.WriteLine ("Processo terminato");
 			Console.Read ();
