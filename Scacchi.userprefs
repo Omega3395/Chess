@@ -1,11 +1,23 @@
 ﻿<Properties StartupConfiguration="{894CF8B6-D590-471D-B0FC-274195C0D2E0}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Scacchi/Program.cs">
     <Files>
-      <File FileName="Scacchi/Program.cs" Line="56" Column="34" />
-      <File FileName="Scacchi/ImageManipulator.cs" Line="122" Column="43" />
-      <File FileName="Scacchi/CCEManipulator.cs" Line="29" Column="16" />
-      <File FileName="Scacchi/Utils.cs" Line="42" Column="30" />
+      <File FileName="Scacchi/Program.cs" Line="43" Column="4" />
+      <File FileName="Scacchi/ImageManipulator.cs" Line="100" Column="20" />
+      <File FileName="Scacchi/CCEManipulator.cs" Line="47" Column="150" />
+      <File FileName="Scacchi/Utils.cs" Line="16" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Scacchi" expanded="True">
+            <Node name="Scacchi" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

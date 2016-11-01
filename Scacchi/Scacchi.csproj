@@ -35,13 +35,7 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Xml.Serialization" />
     <Reference Include="System.Xml" />
-    <Reference Include="Emgu.Util">
-      <HintPath>bin\Debug\Emgu.Util.dll</HintPath>
-    </Reference>
-    <Reference Include="Emgu.CV">
-      <HintPath>..\..\..\Desktop\libemgucv-osx-x86-2.4.9.1839\bin\Emgu.CV.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />

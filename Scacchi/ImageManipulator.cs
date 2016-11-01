@@ -6,10 +6,7 @@ namespace Scacchi {
 
 		public static int x1 = 0, x2 = 0, y1 = 0, y2 = 0;
 
-		public ImageManipulator () {
-		}
-
-		internal static bool IsRed (Color pixel) {
+		static bool IsRed (Color pixel) {
 
 			float Hue = pixel.GetHue ();
 			float Saturation = pixel.GetSaturation ();
@@ -33,7 +30,7 @@ namespace Scacchi {
 		}
 
 
-		internal static string GetCoordinates (int x, int y, int w, int h) {
+		static string GetCoordinates (int x, int y, int w, int h) {
 
 			char [] Columns = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
 
@@ -51,6 +48,57 @@ namespace Scacchi {
 			int FRow = 9 - Row;
 
 			return Convert.ToString (Columns [Column - 1]) + Convert.ToString (FRow);
+		}
+
+		static Bitmap AdjustColors (Bitmap bmp) {
+
+			for (int y = 0; y < bmp.Size.Height; y++) {
+				for (int x = 0; x < bmp.Size.Width; x++) {
+
+					Color CurrentPixel = bmp.GetPixel (x, y);
+
+					if (IsRed (CurrentPixel)) {
+						bmp.SetPixel (x, y, Color.Red);
+					} else if (
+						(CurrentPixel.R <= Values.BLACK_VALUE)
+						&& (CurrentPixel.G <= Values.BLACK_VALUE)
+						&& (CurrentPixel.B <= Values.BLACK_VALUE)) {
+						bmp.SetPixel (x, y, Color.Black);
+					} else if (
+						(CurrentPixel.R >= Values.WHITE_VALUE)
+						&& (CurrentPixel.G >= Values.WHITE_VALUE)
+						&& (CurrentPixel.B >= Values.WHITE_VALUE)) {
+						bmp.SetPixel (x, y, Color.White);
+					} else {
+						bmp.SetPixel (x, y, Color.Transparent);
+					}
+				}
+			}
+			return bmp;
+		}
+
+		/// <summary>
+		/// Simulates a complete houman turn
+		/// </summary>
+		/// <returns>Dirty human move.</returns>
+		public static string HumanTurn (bool cleaned = true) {
+
+			// Prendi e ridimensiona le immagini
+			Bitmap bmp1 = Utils.ResizeImages (new Bitmap (Values.BMP1_PATH), Values.RESIZE_WIDTH, Values.RESIZE_HEIGHT);
+			Bitmap bmp2 = Utils.ResizeImages (new Bitmap (Values.BMP2_PATH), Values.RESIZE_WIDTH, Values.RESIZE_HEIGHT);
+
+			// Crea la immagine "differenza" e ricavane la mossa
+			Bitmap bmp3 = ImageManipulator.getDifferenceBitmap (bmp2, bmp1);
+
+			string HumanMove = ImageManipulator.GetHumanMove (bmp3, bmp1);
+
+			// Chiudi le immagini
+			bmp1.Dispose ();
+			bmp2.Dispose ();
+			bmp3.Dispose ();
+
+			return HumanMove;
+
 		}
 
 		/// <summary>
@@ -86,40 +134,13 @@ namespace Scacchi {
 			return CoordFrom + CoordTo;
 		}
 
-		protected static Bitmap AdjustColors (Bitmap bmp) {
-
-			for (int y = 0; y < bmp.Size.Height; y++) {
-				for (int x = 0; x < bmp.Size.Width; x++) {
-
-					Color CurrentPixel = bmp.GetPixel (x, y);
-
-					if (IsRed (CurrentPixel)) {
-						bmp.SetPixel (x, y, Color.Red);
-					} else if (
-						(CurrentPixel.R <= Values.BLACK_VALUE)
-						&& (CurrentPixel.G <= Values.BLACK_VALUE)
-						&& (CurrentPixel.B <= Values.BLACK_VALUE)) {
-						bmp.SetPixel (x, y, Color.Black);
-					} else if (
-						(CurrentPixel.R >= Values.WHITE_VALUE)
-						&& (CurrentPixel.G >= Values.WHITE_VALUE)
-						&& (CurrentPixel.B >= Values.WHITE_VALUE)) {
-						bmp.SetPixel (x, y, Color.White);
-					} else {
-						bmp.SetPixel (x, y, Color.Transparent);
-					}
-				}
-			}
-			return bmp;
-		}
-
 		/// <summary>
 		/// Gets the differences between 2 images.
 		/// </summary>
 		/// <returns>The difference bitmap.</returns>
 		/// <param name="bmp1">First image.</param>
 		/// <param name="bmp2">Second image.</param>
-		public static Bitmap getDifferenceBitmap (Bitmap bmp1, Bitmap bmp2) {
+		public static Bitmap getDifferenceBitmap (Bitmap bmp1, Bitmap bmp2, bool save_bmp3 = false) {
 
 			Size s1 = bmp1.Size;
 			Size s2 = bmp2.Size;
@@ -143,6 +164,10 @@ namespace Scacchi {
 					}
 				}
 			}
+
+			if (save_bmp3)
+				bmp3.Save (Values.BMP3_PATH, System.Drawing.Imaging.ImageFormat.Png);
+
 			return bmp3;
 		}
 

@@ -32,21 +32,23 @@ namespace Scacchi {
 
 		}
 
-		public static string GetBestMove (string arg, int time = 1000) {
+		public static string GetBestMove (int time = 1000, bool cleaned = true) {
 
-
+			StartCCE (Values.CCE_PATH);
 
 			if (CCE != null) {
 
-				CCE.StandardInput.WriteLine ("position startpos moves " + Values.LOG + arg);
+				CCE.StandardInput.WriteLine ("position startpos moves " + Values.LOG);
 				CCE.StandardInput.WriteLine ("go movetime " + time);
 				Thread.Sleep (time + 10);
 
 				CCE.StandardInput.Close ();
 
-				return Utils.GetLastLine (CCE.StandardOutput.ReadToEnd ());
+				return (cleaned) ? Utils.ToEssential (Utils.GetLastLine (CCE.StandardOutput.ReadToEnd ())) : Utils.GetLastLine (CCE.StandardOutput.ReadToEnd ());
 
 			}
+
+			CloseCCE ();
 
 			return null;
 

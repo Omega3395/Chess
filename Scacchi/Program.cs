@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Threading;
-using System.Security.Cryptography;
 
 namespace Scacchi {
 
@@ -25,38 +20,34 @@ namespace Scacchi {
 
 		public static string CCE_PATH = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "stockfish-7-mac", "Mac", "stockfish-7-64");
 
+		public static string BMP1_PATH = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img1.jpg");
+		public static string BMP2_PATH = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img2.jpg");
+
+		public static string BMP3_PATH = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img3.jpg");
+
+
 	}
 
 	class MainClass {
 
 		public static void Main (string [] args) {
 
-			// Avvia il Chess Engine
-			CCEManipulator.StartCCE (Values.CCE_PATH);
+			string HumanMove;
+			string ComputerMove;
 
+			HumanMove = ImageManipulator.HumanTurn ();
+			Values.LOG += HumanMove + " ";
 
-			// Prendi e ridimensiona le immagini
-			Bitmap bmp1 = Utils.ResizeImages (new Bitmap (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img1.jpg")), Values.RESIZE_WIDTH, Values.RESIZE_HEIGHT);
-			Bitmap bmp2 = Utils.ResizeImages (new Bitmap (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img2.jpg")), Values.RESIZE_WIDTH, Values.RESIZE_HEIGHT);
+			ComputerMove = CCEManipulator.GetBestMove (1000, true);
+			Values.LOG += ComputerMove + " ";
 
-			// Crea la immagine "differenza" e ricavane la mossa
-			Bitmap bmp3 = ImageManipulator.getDifferenceBitmap (bmp2, bmp1);
+			HumanMove = "g1f3";
+			Values.LOG += HumanMove + " ";
 
-			string HumanMove = ImageManipulator.GetHumanMove (bmp3, bmp1);
+			ComputerMove = CCEManipulator.GetBestMove (1000, true);
+			Values.LOG += ComputerMove + " ";
 
-			//bmp3.Save (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Desktop), "img3.png"), ImageFormat.Png);
-
-			// Chiudi le immagini
-			bmp1.Dispose ();
-			bmp2.Dispose ();
-			bmp3.Dispose ();
-
-
-
-			Console.WriteLine (HumanMove);
-
-			// Chiudi il Chess Engine
-			CCEManipulator.CloseCCE ();
+			Console.WriteLine (Values.LOG);
 
 			Console.WriteLine ("Processo terminato");
 			Console.Read ();
