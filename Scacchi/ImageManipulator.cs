@@ -81,7 +81,7 @@ namespace Scacchi {
 		/// Simulates a complete houman turn
 		/// </summary>
 		/// <returns>Dirty human move.</returns>
-		public static string HumanTurn (bool cleaned = true) {
+		public static string HumanTurn (bool save_bmp3, bool cleaned = true) {
 
 			// Prendi e ridimensiona le immagini
 			Bitmap bmp1 = Utils.ResizeImages (new Bitmap (Values.BMP1_PATH), Values.RESIZE_WIDTH, Values.RESIZE_HEIGHT);
@@ -90,14 +90,14 @@ namespace Scacchi {
 			// Crea la immagine "differenza" e ricavane la mossa
 			Bitmap bmp3 = ImageManipulator.getDifferenceBitmap (bmp2, bmp1);
 
-			string HumanMove = ImageManipulator.GetHumanMove (bmp3, bmp1);
+			string HumanMove = ImageManipulator.GetHumanMove (bmp3, bmp1, save_bmp3);
 
 			// Chiudi le immagini
 			bmp1.Dispose ();
 			bmp2.Dispose ();
 			bmp3.Dispose ();
 
-			return HumanMove;
+			return (cleaned) ? Utils.ToEssential (HumanMove) : HumanMove;
 
 		}
 
@@ -107,7 +107,7 @@ namespace Scacchi {
 		/// <returns>The move relevated.</returns>
 		/// <param name="bmp">The "difference" image.</param>
 		/// <param name="bmp1">The first image.</param>
-		public static string GetHumanMove (Bitmap bmp, Bitmap bmp1) {
+		public static string GetHumanMove (Bitmap bmp, Bitmap bmp1, bool save_bmp3 = false) {
 
 			int [,] corners = GetCorners (bmp);
 
@@ -118,6 +118,7 @@ namespace Scacchi {
 
 			bmp.SetPixel (x1, y1, Color.Gold);
 			bmp.SetPixel (x2, y2, Color.Gold);
+			if (save_bmp3) bmp.Save (Values.BMP3_PATH);
 
 			string CoordFrom, CoordTo;
 			int W = bmp.Size.Width;
