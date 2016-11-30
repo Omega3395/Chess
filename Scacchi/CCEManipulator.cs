@@ -4,55 +4,55 @@ using System.IO;
 using System.Threading;
 
 namespace Scacchi {
-	public class CCEManipulator {
+    public class CCEManipulator {
 
-		public CCEManipulator () {
-		}
+        public CCEManipulator() {
+        }
 
-		static Process CCE;
+        static Process CCE;
 
-		public static void StartCCE (string path) {
+        public static void StartCCE(string path) {
 
-			ProcessStartInfo CCEStartInfo = new ProcessStartInfo (path);
-			CCEStartInfo.RedirectStandardInput = true;
-			CCEStartInfo.RedirectStandardOutput = true;
-			CCEStartInfo.UseShellExecute = false;
+            ProcessStartInfo CCEStartInfo = new ProcessStartInfo(path);
+            CCEStartInfo.RedirectStandardInput = true;
+            CCEStartInfo.RedirectStandardOutput = true;
+            CCEStartInfo.UseShellExecute = false;
 
-			CCE = Process.Start (CCEStartInfo);
+            CCE = Process.Start(CCEStartInfo);
 
-			return;
+            return;
 
-		}
+        }
 
-		public static void CloseCCE () {
+        public static void CloseCCE() {
 
-			CCE.Close ();
+            CCE.Close();
 
-			return;
+            return;
 
-		}
+        }
 
-		public static string GetBestMove (int time = 1000, bool cleaned = true) {
+        public static string GetBestMove(int time = 1000, bool cleaned = true) {
 
-			StartCCE (Values.CCE_PATH);
+            StartCCE(Values.CCE_PATH);
 
-			if (CCE != null) {
+            if (CCE != null) {
 
-				CCE.StandardInput.WriteLine ("position startpos moves " + Values.LOG);
-				CCE.StandardInput.WriteLine ("go movetime " + time);
-				Thread.Sleep (time + 10);
+                CCE.StandardInput.WriteLine("position startpos moves " + Values.LOG);
+                CCE.StandardInput.WriteLine("go movetime " + time);
+                Thread.Sleep(time + 10);
 
-				CCE.StandardInput.Close ();
+                CCE.StandardInput.Close();
 
-				return (cleaned) ? Utils.ToEssential (Utils.GetLastLine (CCE.StandardOutput.ReadToEnd ())) : Utils.GetLastLine (CCE.StandardOutput.ReadToEnd ());
+                return (cleaned) ? Utils.ToEssential(Utils.GetLastLine(CCE.StandardOutput.ReadToEnd())) : Utils.GetLastLine(CCE.StandardOutput.ReadToEnd());
 
-			}
+            }
 
-			CloseCCE ();
+            CloseCCE();
 
-			return null;
+            return null;
 
-		}
+        }
 
-	}
+    }
 }
